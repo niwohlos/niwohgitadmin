@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Niwohgitadmin</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+    <title>Niwohgitadmin</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
 </head>
 <body>
 
@@ -16,23 +34,39 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="#">Project name</a>
+      <a class="brand" href="#">niwohgitadmin</a>
       <div class="nav-collapse collapse">
-        <p class="navbar-text pull-right">
-          Logged in as <a href="#" class="navbar-link">Username</a>
-        </p>
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <% if user_signed_in? %>
+            <p class="navbar-text pull-right">
+                Logged in as <a href="#" class="navbar-link"><%= current_user.email %></a>
+            </p>
+            <ul class="nav">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+            </ul>
+        <% else %>
+            <p class="navbar-text pull-right">
+                
+            </p>
+            <ul class="nav">
+                <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>/li>
+            </ul>
+        <% end %>
       </div><!--/.nav-collapse -->
     </div>
     </div>
 </div>
 
+<div class="container-fluid">
+<div class="row-fluid">
+
 <%= yield %>
 
+</div><!--/row-->
+<footer>
+        <p>&copy; 2013 niwohlos cloud services - real-time java development at its finest</p>
+</footer>
+</div><!--/.fluid-container-->
 
 </body>
 </html>
