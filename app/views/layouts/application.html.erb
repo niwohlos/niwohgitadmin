@@ -41,7 +41,7 @@
                 Logged in as <a href="#" class="navbar-link"><%= current_user.email %></a>
             </p>
             <ul class="nav">
-                <li class="active"><a href="#">Dashboard</a></li>
+                <li class="active"><a href="#">Create Repository</a></li>
                 <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
             </ul>
         <% else %>
